@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Wazuh Installation Guide</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="is-preload">
+    <div id="wrapper">
+        <section class="wrapper style1 align-center">
+            <div class="inner">
+                <h2>Instalasi Wazuh Server dan Deployment Wazuh Agent</h2>
+
+                <p>Dokumentasi ini menjelaskan proses instalasi Wazuh Server dan deployment Wazuh Agent dalam skenario single-node installation. Dalam metode ini, Wazuh Server, Elasticsearch, dan Kibana dijalankan dalam satu mesin tanpa distribusi ke beberapa node. Pendekatan ini lebih sederhana dan cocok digunakan untuk pengujian, lingkungan skala kecil, atau implementasi yang tidak memerlukan arsitektur terdistribusi.</p>
+
+                <p>Instalasi Wazuh Server dilakukan menggunakan satu perintah utama, sehingga prosesnya lebih cepat dan minim konfigurasi manual. Setelah server siap, Wazuh Agent dapat dideploy ke endpoint yang ingin dimonitor untuk mendeteksi ancaman dan mengumpulkan log keamanan.</p>
+
+                <p>Untuk instalasi kali ini saya memakai ubuntu 24.04. kita bisa melakukan instalasi wazuh di os manapun selama memenuhi syarat spesifikasi.</p>
+
+                <h3>Instalasi Wazuh Server</h3>
+                <p>Kita akan melakukan instalasi singgle node untuk Wazuh server dengan Wazuh installation assistant dengan cara menjalakan command di bawah ini</p>
+                
+                <pre><code>curl -sO https://packages.wazuh.com/4.11/wazuh-install.sh && sudo bash ./wazuh-install.sh -a</code></pre>
+
+                <p>Jika instalasi sudah dilakukan, akan ada output yang menampilkan user dan password untuk mengakses wazuh dashboard yang dijalankan di ip lokal dengan port 433.</p>
+
+                <p>Sekarang kita sudah berhasi8l menginstall wazuh dan kita bisa membukanya dengan browser melalui alamat ip kita dan memasukan kredential yang ditampilkan tadi.</p>
+
+                <h3>Deployment Wazuh Agent</h3>
+                <p>kita bisa melakukan deployment wazuh agent pada os linux, windows, atau mac os.</p>
+
+                <p>Kali ini saya akan melakukan deployment wazuh agent pada os linux debian.</p>
+
+                <p>Langkah nya cukup mudah, hanya mengisi ip dari mesin yang menjalankan wazuh server (ip kita sendiri) dan menamakan agent yang akan di deploy. Akan ditampilkan command yang harus kita jalankan ke mesin yang akan di instalasi wazuh agent.</p>
+
+                <p>Kita hanya perlu menjalankan command yang tadi di tampilkan.</p>
+
+                <p>Setelah itu kita cek apakah wazuh agent sudah aktif dengan:</p>
+                <pre><code>systemctl status wazuh-agent</code></pre>
+
+                <p>disini ditampilkan bahwa wazuh sudah berjalan.</p>
+
+                <h3>Use Case Bruteforce SSH</h3>
+                <p>Disini kita akan mencoba menjalankan bruteforce ssh dengan tool hydra.</p>
+
+                <p>Ditampilkan disini bahwa ada percobaan login ssh yang gagal berkali kali.</p>
+
+                <p>jika kita klik information pada satu kejadian, disini di tampilkan ip dan username dari penyerang serta metode penyeranganya.</p>
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>
