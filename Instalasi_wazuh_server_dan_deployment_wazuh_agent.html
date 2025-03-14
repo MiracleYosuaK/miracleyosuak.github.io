@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Wazuh Installation Guide</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #34495e;
+            margin-top: 20px;
+        }
+        p {
+            line-height: 1.6;
+        }
+        pre {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            color: #c0392b;
+        }
+        .note {
+            background-color: #f9f9f9;
+            border-left: 5px solid #3498db;
+            padding: 10px;
+            margin: 20px 0;
+        }
+        .note p {
+            margin: 0;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <section class="section">
+            <h2>Instalasi Wazuh Server dan Deployment Wazuh Agent</h2>
+
+            <p>Dokumentasi ini menjelaskan proses instalasi Wazuh Server dan deployment Wazuh Agent dalam skenario single-node installation. Dalam metode ini, Wazuh Server, Elasticsearch, dan Kibana dijalankan dalam satu mesin tanpa distribusi ke beberapa node. Pendekatan ini lebih sederhana dan cocok digunakan untuk pengujian, lingkungan skala kecil, atau implementasi yang tidak memerlukan arsitektur terdistribusi.</p>
+
+            <p>Instalasi Wazuh Server dilakukan menggunakan satu perintah utama, sehingga prosesnya lebih cepat dan minim konfigurasi manual. Setelah server siap, Wazuh Agent dapat dideploy ke endpoint yang ingin dimonitor untuk mendeteksi ancaman dan mengumpulkan log keamanan.</p>
+
+            <p>Untuk instalasi kali ini saya memakai ubuntu 24.04. kita bisa melakukan instalasi wazuh di os manapun selama memenuhi syarat spesifikasi.</p>
+            <div style="display: flex; justify-content: center;">
+                <img style="width: 100%; max-width: 350px; height: auto;" src="images/wazuh_install/spek.png">
+            </div>
+            
+            <div class="note">
+                <p><strong>Catatan:</strong> Pastikan sistem Anda memenuhi persyaratan minimum sebelum memulai instalasi.</p>
+            </div>
+
+            <h3>Instalasi Wazuh Server</h3>
+            <p>Kita akan melakukan instalasi singgle node untuk Wazuh server dengan Wazuh installation assistant dengan cara menjalakan command di bawah ini</p>
+            
+            <pre><code>curl -sO https://packages.wazuh.com/4.11/wazuh-install.sh && sudo bash ./wazuh-install.sh -a</code></pre>
+            <div style="display: flex; justify-content: center;">
+                <img style="width: 100%; max-width: 1250px; height: auto;" src="images/wazuh_install/install.png">
+            </div>
+            <p>Jika instalasi sudah dilakukan, akan ada output yang menampilkan user dan password untuk mengakses wazuh dashboard yang dijalankan di ip lokal dengan port 433.</p>
+            <div style="display: flex; justify-content: center;">
+                <img style="width: 100%; max-width: 350px; height: auto;" src="images/wazuh_install/install2.png">
+            </div>
+            <p>Sekarang kita sudah berhasil menginstall wazuh dan kita bisa membukanya dengan browser melalui alamat ip kita dan memasukan kredential yang ditampilkan tadi.</p>
+            <div style="display: flex; justify-content: center;">
+                <img style="width: 100%; max-width: 350px; height: auto;" src="images/wazuh_install/login.png">
+            </div>
+            <h3>Deployment Wazuh Agent</h3>
+            <p>kita bisa melakukan deployment wazuh agent pada os linux, windows, atau mac os.</p>
+
+            <p>Kali ini saya akan melakukan deployment wazuh agent pada os linux debian.</p>
+            <div style="display: flex; justify-content: center;">
+                <img style="width: 100%; max-width: 350px; height: auto;" src="images/wazuh_install/deploy.png">
+            </div>
+
+            <p>Langkah nya cukup mudah, hanya mengisi ip dari mesin yang menjalankan wazuh server (ip kita sendiri) dan menamakan agent yang akan di deploy. Akan ditampilkan command yang harus kita jalankan ke mesin yang akan di instalasi wazuh agent.</p>
+            <div style="display: flex; justify-content: center;">
+                <img style="width: 100%; max-width: 350px; height: auto;" src="images/wazuh_install/deploy2.png">
+            </div>
+            <p>Kita hanya perlu menjalankan command yang tadi di tampilkan.</p>
+            <div style="display: flex; justify-content: center;">
+                <img style="width: 100%; max-width: 350px; height: auto;" src="images/wazuh_install/install_cli.png">
+            </div>
+
+            <p>Setelah itu kita cek apakah wazuh agent sudah aktif dengan:</p>
+            <pre><code>systemctl status wazuh-agent</code></pre>
+
+
+            <p>disini ditampilkan bahwa wazuh sudah berjalan.</p>
+            <div style="display: flex; justify-content: center;">
+                <img style="width: 100%; max-width: 350px; height: auto;" src="images/wazuh_install/status.png">
+            </div>
+
+            <h3>Use Case Bruteforce SSH</h3>
+            <p>Disini kita akan mencoba menjalankan bruteforce ssh dengan tool hydra.</p>
+            <div style="display: flex; justify-content: center;">
+                <img style="width: 100%; max-width: 350px; height: auto;" src="images/wazuh_install/hydra.png">
+            </div>
+
+            <p>Ditampilkan disini bahwa ada percobaan login ssh yang gagal berkali kali.</p>
+            <div style="display: flex; justify-content: center;">
+                <img style="width: 100%; max-width: 350px; height: auto;" src="images/wazuh_install/hasil.png">
+            </div>
+
+            <p>jika kita klik information pada satu kejadian, disini di tampilkan ip dan username dari penyerang serta metode penyeranganya.</p>
+            <div style="display: flex; justify-content: center;">
+                <img style="width: 100%; max-width: 350px; height: auto;" src="images/wazuh_install/diteksi.png">
+            </div>
+        </section>
+    </div>
+</body>
+</html>

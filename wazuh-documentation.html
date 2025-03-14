@@ -1,20 +1,86 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="id">
 <head>
-    <title>Wazuh Documentation</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wazuh Security Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: left;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .log-entry {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 5px solid #3498db;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex; /* Menggunakan Flexbox */
+            align-items: center; /* Pusatkan vertikal */
+            gap: 20px; /* Jarak antara teks dan gambar */
+        }
+        .log-entry:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        .log-text {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+        .preview {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+            flex: 1; /* Teks mengambil ruang yang tersedia */
+        }
+        .log-entry img {
+            width: 100%;
+            max-width: 150px; /* Lebar maksimum gambar */
+            height: auto;
+            border-radius: 5px; /* Sudut melengkung untuk gambar */
+        }
+    </style>
 </head>
-<body class="is-preload">
-    <div id="wrapper">
-        <section class="wrapper style1 align-center">
-            <div class="inner">
-                <h2>Wazuh Documentation</h2>
-                <p>Explore the installation and deployment guide for Wazuh Server and Wazuh Agent.</p>
-                <a href="wazuh-installation.html" class="button large wide">Instalasi Wazuh Server dan Deployment Wazuh Agent</a>
+<body>
+
+<div class="container">
+    <h1>Wazuh Documentation</h1>
+
+    <div class="log-entry" onclick="window.location.href='Instalasi_wazuh_server_dan_deployment_wazuh_agent.html';">
+        <div>
+            <div class="log-text">Instalasi Wazuh Server dan Deployment Wazuh Agent</div>
+            <div class="preview">
+                Dokumentasi ini menjelaskan proses instalasi Wazuh Server dan deployment Wazuh Agent dalam skenario single-node installation. Dalam metode ini, Wazuh Server, Elasticsearch, dan Kibana dijalankan dalam satu mesin tanpa distribusi ke beberapa node. Pendekatan ini lebih sederhana dan cocok digunakan untuk pengujian, lingkungan skala kecil, atau implementasi yang tidak memerlukan arsitektur terdistribusi...
             </div>
-        </section>
+        </div>
+        <img src="images/gallery/fulls/install_wazuh.png" alt="Wazuh">
     </div>
+
+</div>
+
 </body>
 </html>
